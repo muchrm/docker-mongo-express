@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+        ### MongoDB Container #######################################
+        mongo:
+            container_name: mongo
+            build: ./mongo
+            ports:
+                - "27017:27017"
+            volumes:
+            - ./data/mongo:/data/db
+
+        mongo-express:
+            container_name: mongo-express
+            build: ./mongo-express
+            ports:
+                - "8081:8081"
+            links:
+                - "mongo:mongo"
